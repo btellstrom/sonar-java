@@ -70,6 +70,9 @@ public class JaCoCoSensor implements Sensor {
   @Override
   public void execute(SensorContext context) {
     warnAboutDeprecatedProperties(context.config());
+    if (context.config().hasKey(JACOCO_XML_PROPERTY)) {
+      return;
+    }
     Set<File> reportPaths = getReportPaths(context);
     if (reportPaths.isEmpty()) {
       return;
